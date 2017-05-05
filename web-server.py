@@ -23,6 +23,7 @@ def index():
                 f.write(json.dumps(registered_users))
             form.msg = 'Thanks for registering :)'
         
+        #TODO: make API request to present only the present users.
         form.users = []
         for user in registered_users:
             form.users.append(user)
@@ -32,5 +33,6 @@ def index():
         print(e)
 
 if __name__ == '__main__':
+    #TODO: create assynchronous function to monitor when a new user appears
     app.debug = True
     app.run("0.0.0.0", 80)

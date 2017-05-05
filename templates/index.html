@@ -1,0 +1,19 @@
+<!doctype html>
+{% from "_formhelpers.html" import render_field %}
+
+<h1>Present users:</h1>
+{% for user in form.users %}
+  <dl>
+    {{user}}
+  </dl>
+{% endfor %}
+
+<h1>Register User MAC</h1>
+<dl>{{form.msg}}</dl>
+<form method=post>
+  <dl>
+    {{ render_field(form.name) }}
+    {{ render_field(form.mac) }}
+  </dl>
+  <p><input type=submit value=Register>
+</form>

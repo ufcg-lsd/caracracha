@@ -6,14 +6,20 @@
         function openLSD() {
             $.get( "http://10.30.0.123/openconnection");
         }
+
+        $(function() {
+            var intervalMS = 5000; // 5 seconds
+            setInterval(function() {
+                $("#dynamicImage").prop("src", "http://10.30.0.123/currentimage?lixo="+Math.random());
+            }, intervalMS);
+        });
     </script>
 </head>
 <body>
 
 <div align="center">
 
-    <iframe width="420" height="345" src="https://www.youtube.com/embed/pD7LQo0rTGA">
-    </iframe>
+    <img id="dynamicImage" class="dynamicImage", src="http://10.30.0.123/currentimage">
 
     <p>Click the button to open the door.</p>
 

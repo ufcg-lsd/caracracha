@@ -1,4 +1,5 @@
 import json
+import requests
 from flask import Flask, flash, request, render_template, session
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 
@@ -8,6 +9,11 @@ app.secret_key = "super secret key"
 class RegistrationForm(Form):
     name = StringField('Name', [validators.Length(min=4, max=25)])
     mac = StringField('MAC Address', [validators.Length(min=17, max=17)])
+
+@app.route('/open', methods=['GET', 'POST'])
+def open():
+    r = requests.get('http://arduinodoorcontrol:5001')
+    return str(r.status_code)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -35,4 +41,4 @@ def index():
 if __name__ == '__main__':
     #TODO: create assynchronous function to monitor when a new user appears
     app.debug = True
-    app.run("0.0.0.0", 80)
+    app.run("0.0.0.0", 8888)

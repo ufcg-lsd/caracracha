@@ -10,10 +10,14 @@ class RegistrationForm(Form):
     name = StringField('Name', [validators.Length(min=4, max=25)])
     mac = StringField('MAC Address', [validators.Length(min=17, max=17)])
 
-@app.route('/open', methods=['GET', 'POST'])
-def open():
-    r = requests.get('http://arduinodoorcontrol:5001')
+@app.route('/openconnection', methods=['GET', 'POST'])
+def openconnection():
+    r = requests.get('http://10.30.100.69:5001')
     return str(r.status_code)
+
+@app.route('/jquery-3.2.1.js', methods=['GET'])
+def jquery():
+    return open('templates/jquery-3.2.1.js').read()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -41,4 +45,4 @@ def index():
 if __name__ == '__main__':
     #TODO: create assynchronous function to monitor when a new user appears
     app.debug = True
-    app.run("0.0.0.0", 8888)
+    app.run("0.0.0.0", 80)
